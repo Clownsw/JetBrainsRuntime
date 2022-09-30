@@ -941,8 +941,12 @@ public class WLToolkit extends UNIXToolkit implements Runnable {
     public boolean isFrameStateSupported(int state)
       throws HeadlessException
     {
-        log.info("Not implemented: WLToolkit.isFrameStateSupported()");
-        return false;
+        return switch (state) {
+            case Frame.NORMAL -> true;
+            case Frame.ICONIFIED -> true;
+            case Frame.MAXIMIZED_BOTH -> true;
+            default -> false;
+        };
     }
 
     @Override
